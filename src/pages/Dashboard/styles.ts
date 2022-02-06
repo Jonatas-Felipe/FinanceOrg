@@ -30,6 +30,29 @@ export const H1 = styled.Text`
   font-family: "Poppins_600SemiBold";
 `;
 
+export const PriceGroup = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const H2 = styled.Text`
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #414142;
+  font-family: "Poppins_600SemiBold";
+  align-self: flex-start;
+`;
+
+export const Display4 = styled.Text`
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  color: #414142;
+  font-family: "Poppins_600SemiBold";
+  margin-right: 14px;
+`;
+
 export const Group = styled.View`
   flex-direction: row;
 `;
