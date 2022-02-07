@@ -2,10 +2,18 @@ import styled from "styled-components/native";
 
 import ButtonComponent from "../../components/Button";
 
-export const Container = styled.SafeAreaView`
+interface IContent {
+  minHeight: number;
+}
+
+export const Container = styled.ScrollView`
   flex: 1;
-  justify-content: center;
+`;
+
+export const Content = styled.SafeAreaView<IContent>`
   padding: 0 30px;
+  min-height: ${(props) => props.minHeight}px;
+  justify-content: center;
 `;
 
 export const ReceptionText = styled.Text`
