@@ -1,5 +1,10 @@
-import styled, { css } from "styled-components/native";
-import { LinearGradient } from "expo-linear-gradient";
+import styled, { css } from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
+interface ICard {
+  first?: boolean;
+  last?: boolean;
+}
 
 interface IActivity {
   className?: string;
@@ -20,7 +25,7 @@ export const H1 = styled.Text`
   font-size: 24px;
   line-height: 36px;
   color: #505050;
-  font-family: "Poppins_500Medium";
+  font-family: 'Poppins_500Medium';
 `;
 
 export const ProfileButton = styled.TouchableOpacity``;
@@ -38,7 +43,7 @@ export const H3 = styled.Text`
   font-size: 14px;
   line-height: 20px;
   color: #363434;
-  font-family: "Poppins_500Medium";
+  font-family: 'Poppins_500Medium';
 `;
 
 export const MyCards = styled.View`
@@ -53,16 +58,35 @@ export const CardsGroup = styled.ScrollView`
   overflow: scroll;
 `;
 
-export const Card = styled(LinearGradient)`
+export const Card = styled(LinearGradient)<ICard>`
   border-radius: 30px;
   width: 145px;
   height: 164px;
   padding: 26px 17px;
-  /* background: linear-gradient(177.23deg, #2CF3E7 -13.49%, #3A49F9 109.75%); */
   background: #3a49f9;
-  margin-right: 13px;
   position: relative;
   overflow: hidden;
+
+  ${props => {
+    if (props.first) {
+      return css`
+        margin-left: 0px;
+        margin-right: 6px;
+      `;
+    }
+
+    if (props.last) {
+      return css`
+        margin-left: 6px;
+        margin-right: 0px;
+      `;
+    }
+
+    return css`
+      margin-left: 6px;
+      margin-right: 6px;
+    `;
+  }}
 `;
 
 export const CardDetail = styled.View`
@@ -77,7 +101,7 @@ export const CardDetail = styled.View`
 `;
 
 export const CardTitle = styled.Text`
-  font-family: "Poppins_600SemiBold";
+  font-family: 'Poppins_600SemiBold';
   font-weight: 600;
   font-size: 16px;
   color: #ffffff;
@@ -85,14 +109,14 @@ export const CardTitle = styled.Text`
 `;
 
 export const CardText = styled.Text`
-  font-family: "Poppins_500Medium";
+  font-family: 'Poppins_500Medium';
   font-weight: 500;
   font-size: 14px;
   color: #e0e0e0;
 `;
 
 export const CardExpenses = styled.Text`
-  font-family: "Poppins_600SemiBold";
+  font-family: 'Poppins_600SemiBold';
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
@@ -116,8 +140,8 @@ export const Activity = styled.TouchableHighlight<IActivity>`
   border-radius: 26px;
   elevation: 5;
 
-  ${(props) =>
-    props.className === "mx-9px"
+  ${props =>
+    props.className === 'mx-9px'
       ? css`
           margin-left: 9px;
           margin-right: 9px;
@@ -136,7 +160,7 @@ export const ActivityIcon = styled.View`
 
 export const ActivityTitle = styled.Text`
   margin-top: auto;
-  font-family: "Poppins_400Regular";
+  font-family: 'Poppins_400Regular';
   font-size: 11px;
   color: #000000;
 `;

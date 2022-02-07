@@ -5,12 +5,12 @@ import React, {
   forwardRef,
   useState,
   useCallback,
-} from "react";
-import { TextInputProps } from "react-native";
-import { Entypo } from "@expo/vector-icons";
-import { useField } from "@unform/core";
+} from 'react';
+import { TextInputProps } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
+import { useField } from '@unform/core';
 
-import { Container, Label, Group, TextInput, Button } from "./styles";
+import { Container, Label, Group, TextInput, Button } from './styles';
 
 interface IInputProps extends TextInputProps {
   label?: string;
@@ -30,10 +30,10 @@ interface IInputRef {
 
 const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
   { name, label, style, secureTextEntry, disabled, showIcon, ...rest },
-  ref
+  ref,
 ) => {
   const inputElementRef = useRef<any>(null);
-  const { registerField, defaultValue = "", fieldName, error } = useField(name);
+  const { registerField, defaultValue = '', fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReference>({ value: defaultValue });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,7 +48,7 @@ const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
   }, []);
 
   const handlePress = useCallback(() => {
-    setShowPassword((state) => !state);
+    setShowPassword(state => !state);
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -61,13 +61,13 @@ const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
     registerField<string>({
       name: fieldName,
       ref: inputValueRef.current,
-      path: "value",
+      path: 'value',
       setValue(_, value) {
         inputValueRef.current.value = value;
         inputElementRef.current.setNariveProps({ text: value });
       },
       clearValue() {
-        inputValueRef.current.value = "";
+        inputValueRef.current.value = '';
         inputElementRef.current.clear();
       },
     });
@@ -75,7 +75,7 @@ const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
 
   return (
     <Container
-      pointerEvents={disabled ? "none" : "auto"}
+      pointerEvents={disabled ? 'none' : 'auto'}
       style={style}
       isFocused={isFocused}
       isErrored={!!error}
@@ -90,7 +90,7 @@ const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
           defaultValue={defaultValue}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          onChangeText={(value) => {
+          onChangeText={value => {
             inputValueRef.current.value = value;
           }}
           {...rest}
@@ -98,7 +98,7 @@ const Input: React.ForwardRefRenderFunction<IInputRef, IInputProps> = (
         {secureTextEntry && (
           <Button
             onPress={handlePress}
-            show={typeof showIcon === "boolean" ? showIcon : true}
+            show={typeof showIcon === 'boolean' ? showIcon : true}
           >
             {!showPassword ? (
               <Entypo name="eye" size={24} color="#BFBFBF" />

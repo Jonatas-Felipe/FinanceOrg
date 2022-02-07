@@ -1,45 +1,80 @@
-import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import React, { useMemo } from 'react';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import {
   Container,
+  BalanceContent,
   BalanceIcon,
+  Balance,
   BalanceGroup,
   BalanceTitle,
   BalanceAmount,
   BalanceDate,
-} from "./styles";
+  InstallmentsGroup,
+  InstallmentsText,
+  InstallmentsQuantity,
+} from './styles';
 
 interface IBalanceItem {
-  type: "inflows" | "outflows" | "investments";
+  type: 'inflows' | 'outflows' | 'investments' | 'credit';
   title: string;
   amount: string;
   date: string;
+  installments?: string;
 }
 
-const BalanceItem: React.FC<IBalanceItem> = ({ type, title, amount, date }) => {
+const BalanceItem: React.FC<IBalanceItem> = ({
+  type,
+  title,
+  amount,
+  date,
+  installments,
+}) => {
+  const color = useMemo(() => {
+    switch (type) {
+      case 'inflows':
+        return '#147C18';
+      case 'outflows':
+        return '#F4000F';
+      case 'investments':
+        return '#F4CB00';
+      default:
+        return '#949494';
+    }
+  }, [type]);
+
   return (
     <Container>
       <BalanceIcon type={type}>
-        {type === "inflows" ? (
+        {type === 'inflows' ? (
           <MaterialCommunityIcons
             name="arrow-collapse-down"
-            size={22}
-            color="#147C18"
+            size={20}
+            color={color}
           />
         ) : (
           <MaterialCommunityIcons
-            name="arrow-collapse-up"
-            size={22}
-            color={type === "outflows" ? "#F4000F" : "#F4CB00"}
+            name="arrow-expand-up"
+            size={20}
+            color={color}
           />
         )}
       </BalanceIcon>
-      <BalanceGroup>
-        <BalanceTitle>{title}</BalanceTitle>
-        <BalanceAmount type={type}>{amount}</BalanceAmount>
-      </BalanceGroup>
-      <BalanceDate>{date}</BalanceDate>
+      <Balance>
+        <BalanceContent>
+          <BalanceGroup>
+            <BalanceTitle>{title}</BalanceTitle>
+            <BalanceAmount type={type}>{amount}</BalanceAmount>
+          </BalanceGroup>
+          <BalanceDate>{date}</BalanceDate>
+        </BalanceContent>
+        {type === 'credit' && (
+          <InstallmentsGroup>
+            <InstallmentsText>Parcelas:</InstallmentsText>
+            <InstallmentsQuantity>{installments}</InstallmentsQuantity>
+          </InstallmentsGroup>
+        )}
+      </Balance>
     </Container>
   );
 };

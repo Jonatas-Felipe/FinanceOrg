@@ -1,8 +1,13 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
+import FilterBoxComponent from '../../components/FilterBox';
 
 interface IBalancesGroup {
   paddingTop?: boolean;
   paddingBottom?: boolean;
+}
+
+interface IFilterBox {
+  show?: boolean;
 }
 
 interface IPageButton {
@@ -35,7 +40,7 @@ export const H1 = styled.Text`
   font-size: 18px;
   line-height: 22px;
   color: #505050;
-  font-family: "Poppins_600SemiBold";
+  font-family: 'Poppins_600SemiBold';
   margin-left: 10px;
 `;
 
@@ -49,7 +54,7 @@ export const BtnAdd = styled.TouchableOpacity`
 `;
 
 export const BtnText = styled.Text`
-  font-family: "Poppins_700Bold";
+  font-family: 'Poppins_700Bold';
   font-weight: bold;
   color: #666666;
   margin-left: 6px;
@@ -65,7 +70,7 @@ export const ExpenseGroup = styled.View`
 `;
 
 export const ExpenseText = styled.Text`
-  font-family: "Poppins_400Regular";
+  font-family: 'Poppins_400Regular';
   font-size: 10px;
   line-height: 12px;
   color: #a8a8a8;
@@ -77,7 +82,7 @@ export const ExpenseSubGroup = styled.View`
 `;
 
 export const ExpenseCipher = styled.Text`
-  font-family: "Poppins_500Medium";
+  font-family: 'Poppins_500Medium';
   font-weight: 500;
   font-size: 10px;
   line-height: 12px;
@@ -85,7 +90,7 @@ export const ExpenseCipher = styled.Text`
 `;
 
 export const ExpensePrice = styled.Text`
-  font-family: "Poppins_600SemiBold";
+  font-family: 'Poppins_600SemiBold';
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
@@ -114,7 +119,7 @@ export const SelectBank = styled.View`
 `;
 
 export const BankName = styled.Text`
-  font-family: "Poppins_700Bold";
+  font-family: 'Poppins_700Bold';
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
@@ -134,19 +139,19 @@ export const BalancesGroup = styled.View<IBalancesGroup>`
   justify-content: space-between;
   padding-left: 24px;
   padding-right: 24px;
-  padding-top: ${(props) => (props.paddingTop ? "20px" : "10px")};
-  padding-bottom: ${(props) => (props.paddingBottom ? "20px" : "10px")};
+  padding-top: ${props => (props.paddingTop ? '20px' : '10px')};
+  padding-bottom: ${props => (props.paddingBottom ? '20px' : '10px')};
 `;
 
 export const BalanceLabel = styled.Text`
-  font-family: "Poppins_400Regular";
+  font-family: 'Poppins_400Regular';
   font-size: 14px;
   line-height: 20px;
   color: #a8a8a8;
 `;
 
 export const BalancePrice = styled.Text`
-  font-family: "Poppins_600SemiBold";
+  font-family: 'Poppins_600SemiBold';
   font-weight: 600;
   font-size: 14px;
   line-height: 20px;
@@ -156,6 +161,15 @@ export const BalancePrice = styled.Text`
 export const Filter = styled.View`
   padding: 20px;
   align-items: flex-end;
+  position: relative;
+`;
+
+export const FilterBox = styled(FilterBoxComponent)<IFilterBox>`
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  z-index: 100;
+  opacity: ${props => (props.show ? 1 : 0)};
 `;
 
 export const Pagination = styled.View`
@@ -171,17 +185,17 @@ export const Pagination = styled.View`
 `;
 
 export const PageButton = styled.TouchableOpacity<IPageButton>`
-  width: ${(props) => (props.stringContent ? "60px" : "30px")};
+  width: ${props => (props.stringContent ? '60px' : '30px')};
   height: 30px;
-  border-radius: ${(props) => (props.stringContent ? "10px" : "15px")};
-  background: ${(props) => (props.active ? "#2a2c30" : "transparent")};
+  border-radius: ${props => (props.stringContent ? '10px' : '15px')};
+  background: ${props => (props.active ? '#2a2c30' : 'transparent')};
   align-items: center;
   justify-content: center;
 `;
 
 export const Page = styled.Text<IPage>`
-  font-family: "Poppins_700Bold";
+  font-family: 'Poppins_700Bold';
   font-weight: bold;
   font-size: 12px;
-  color: ${(props) => (props.active ? "#EFEFEF" : "#828282")};
+  color: ${props => (props.active ? '#EFEFEF' : '#828282')};
 `;

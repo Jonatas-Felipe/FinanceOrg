@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
-import { Ionicons, AntDesign, Fontisto } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import React, { useCallback } from 'react';
+import { Ionicons, AntDesign, Fontisto } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-import { ScrollView } from "react-native";
+import { ScrollView } from 'react-native';
 import {
   Container,
   Welcome,
@@ -22,24 +22,24 @@ import {
   Activity,
   ActivityIcon,
   ActivityTitle,
-} from "./styles";
-import Balance from "../../components/Balance";
+} from './styles';
+import Balance from '../../components/Balance';
 
 const Dashboard: React.FC = () => {
   const navigation = useNavigation();
 
   const handlePressProfile = useCallback(() => {
-    navigation.navigate("Profile" as any);
+    navigation.navigate('Profile' as any);
   }, [navigation]);
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
       <Container>
         <Welcome>
           <H1>Olá, Felipe</H1>
           <ProfileButton onPress={handlePressProfile}>
             <Avatar
-              source={{ uri: "https://placeimg.com/40/40/any" }}
+              source={{ uri: 'https://placeimg.com/40/40/any' }}
               resizeMode="cover"
             />
           </ProfileButton>
@@ -48,19 +48,19 @@ const Dashboard: React.FC = () => {
         <MyCards>
           <H3>Meus cartões</H3>
           <CardsGroup horizontal>
-            <Card colors={["#6200ff", "#380059"]}>
+            <Card first colors={['#6200ff', '#380059']}>
               <CardDetail />
               <CardTitle>Nubank</CardTitle>
               <CardText>Gastos</CardText>
               <CardExpenses>R$ 166,01</CardExpenses>
             </Card>
-            <Card colors={["#00FFD1", "#005959"]}>
+            <Card colors={['#00FFD1', '#005959']}>
               <CardDetail />
               <CardTitle>Next</CardTitle>
               <CardText>Gastos</CardText>
               <CardExpenses>R$ 66,01</CardExpenses>
             </Card>
-            <Card colors={["#f93a3a", "#b91414"]}>
+            <Card last colors={['#f93a3a', '#b91414']}>
               <CardDetail />
               <CardTitle>Bradesco</CardTitle>
               <CardText>Gastos</CardText>
@@ -73,11 +73,11 @@ const Dashboard: React.FC = () => {
           <ActivitiesGroup>
             <Activity
               style={{
-                shadowColor: "rgba(0,0,0,0.5)",
+                shadowColor: 'rgba(0,0,0,0.5)',
                 shadowOffset: { width: 2, height: 2 },
                 shadowRadius: 5,
               }}
-              onPress={() => navigation.navigate("History" as any)}
+              onPress={() => navigation.navigate('History' as any)}
             >
               <>
                 <ActivityIcon>
@@ -89,10 +89,11 @@ const Dashboard: React.FC = () => {
             <Activity
               className="mx-9px"
               style={{
-                shadowColor: "rgba(0,0,0,0.5)",
+                shadowColor: 'rgba(0,0,0,0.5)',
                 shadowOffset: { width: 2, height: 2 },
                 shadowRadius: 5,
               }}
+              onPress={() => navigation.navigate('Cards' as any)}
             >
               <>
                 <ActivityIcon>
@@ -103,7 +104,7 @@ const Dashboard: React.FC = () => {
             </Activity>
             <Activity
               style={{
-                shadowColor: "rgba(0,0,0,0.5)",
+                shadowColor: 'rgba(0,0,0,0.5)',
                 shadowOffset: { width: 2, height: 2 },
                 shadowRadius: 5,
               }}

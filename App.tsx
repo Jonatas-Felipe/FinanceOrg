@@ -1,5 +1,5 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 import {
   useFonts,
@@ -7,10 +7,10 @@ import {
   Poppins_500Medium,
   Poppins_600SemiBold,
   Poppins_700Bold,
-} from "@expo-google-fonts/poppins";
+} from '@expo-google-fonts/poppins';
 
-import AppProvider from "./src/hooks";
-import Routes from "./src/routes";
+import AppProvider from './src/hooks';
+import Routes from './src/routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

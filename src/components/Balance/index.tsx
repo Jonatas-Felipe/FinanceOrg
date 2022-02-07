@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from "react";
-import { TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useCallback, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import {
   Container,
@@ -10,20 +10,20 @@ import {
   Display4,
   OldbalanceGroup,
   B,
-} from "./styles";
+} from './styles';
 
 const Balance: React.FC = () => {
   const [balanceHide, setBalanceHide] = useState(false);
 
   const handlePress = useCallback(() => {
-    setBalanceHide((state) => !state);
+    setBalanceHide(state => !state);
   }, []);
   return (
     <Container>
       <P>saldo conta total</P>
       <BalanceGroup>
         <H2>R$</H2>
-        <Display4>{balanceHide ? "•••••••••" : "2.000,00"}</Display4>
+        <Display4>{balanceHide ? '•••••••••' : '2.000,00'}</Display4>
         <TouchableOpacity onPress={handlePress}>
           {balanceHide ? (
             <Ionicons name="eye" size={25} color="#BFBFBF" />

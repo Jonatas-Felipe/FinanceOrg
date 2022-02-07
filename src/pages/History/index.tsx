@@ -1,16 +1,14 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo, useState } from 'react';
 import {
   Ionicons,
   Entypo,
-  AntDesign,
-  Fontisto,
   FontAwesome,
   MaterialIcons,
   FontAwesome5,
-} from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+} from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from 'react-native';
 import {
   Container,
   Header,
@@ -33,22 +31,62 @@ import {
   BalanceLabel,
   BalancePrice,
   Filter,
+  FilterBox,
   Pagination,
   PageButton,
   Page,
-} from "./styles";
-import Balance from "../../components/Balance";
-import BalanceItem from "../../components/BalanceItem";
+} from './styles';
+import Balance from '../../components/Balance';
+import BalanceItem from '../../components/BalanceItem';
+
+interface IOption {
+  id: string | number | boolean;
+  value: string;
+  selected: boolean;
+}
 
 const History: React.FC = () => {
   const navigation = useNavigation();
+  const [showFilter, setShowFilter] = useState(false);
+  const [optionSelected, setOptionSelected] = useState<
+    string | number | boolean
+  >('all');
+
+  const options = useMemo<IOption[]>(
+    () => [
+      {
+        id: 'all',
+        value: 'Filtrar por todos',
+        selected: optionSelected === 'all',
+      },
+      {
+        id: 'spendings',
+        value: 'Filtrar apenas por gastos',
+        selected: optionSelected === 'spendings',
+      },
+      {
+        id: 'earnings',
+        value: 'Filtrar apenas por ganhos',
+        selected: optionSelected === 'earnings',
+      },
+    ],
+    [optionSelected],
+  );
 
   const handlePressGoBack = useCallback(() => {
     navigation.goBack();
   }, [navigation]);
 
+  const handlePressFilter = useCallback(() => {
+    setShowFilter(state => !state);
+  }, []);
+
+  const handleSelectOption = useCallback((option: IOption) => {
+    setOptionSelected(option.id);
+  }, []);
+
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
       <Container>
         <Header>
           <Title>
@@ -58,7 +96,7 @@ const History: React.FC = () => {
             <H1>Janeiro 2022</H1>
           </Title>
           <BtnAdd>
-            <Entypo name="plus" size={24} color="#666666" />
+            <Entypo name="plus" size={20} color="#666666" />
             <BtnText>Adicionar</BtnText>
           </BtnAdd>
         </Header>
@@ -93,9 +131,15 @@ const History: React.FC = () => {
           </Box>
           <Box>
             <Filter>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handlePressFilter}>
                 <Ionicons name="filter" size={24} color="#000" />
               </TouchableOpacity>
+              <FilterBox
+                options={options}
+                onSelect={handleSelectOption}
+                show={showFilter}
+                pointerEvents={showFilter ? 'auto' : 'none'}
+              />
             </Filter>
             <BalanceItem
               type="inflows"
